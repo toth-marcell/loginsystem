@@ -1,0 +1,36 @@
+lockfileVersion: '9.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+importers:
+
+  .:
+    dependencies:
+      '@awmottaz/prettier-plugin-void-html':
+        specifier: ^1.9.0
+        version: 1.9.0(prettier@3.6.2)
+      prettier:
+        specifier: ^3.6.2
+        version: 3.6.2
+
+packages:
+
+  '@awmottaz/prettier-plugin-void-html@1.9.0':
+    resolution: {integrity: sha512-NMwspO5GtUU9PESivdrx86z7XTm0lM5DDoMMVtYUp7nBQXak23j9/aB9tNR9XuVyoXYhdvxhEjXal9DfUqZnNg==}
+    peerDependencies:
+      prettier: 3.0.0 - 3.6.x
+
+  prettier@3.6.2:
+    resolution: {integrity: sha512-I7AIg5boAr5R0FFtJ6rCfD+LFsWHp81dolrFD8S79U9tb8Az2nGrJncnMSnys+bpQJfRUzqs9hnA81OAA3hCuQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+
+snapshots:
+
+  '@awmottaz/prettier-plugin-void-html@1.9.0(prettier@3.6.2)':
+    dependencies:
+      prettier: 3.6.2
+
+  prettier@3.6.2: {}

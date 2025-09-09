@@ -1,0 +1,40 @@
+:root {
+  --accent-color: royalblue;
+}
+body {
+  font-family: sans-serif;
+}
+form {
+  width: max-content;
+  margin: 25vh auto;
+  border: var(--accent-color) 2px solid;
+}
+form > * {
+  display: block;
+  margin: 20px;
+}
+button {
+  cursor: pointer;
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  margin: 20px auto;
+}
+button:hover {
+  opacity: 80%;
+}
+label {
+  text-align: right;
+}
+input {
+  float: right;
+  margin-left: 10px;
+  font-size: 1rem;
+}
+@media (prefers-color-scheme: dark) {
+  body,
+  input {
+    background: #222;
+  }
+}
