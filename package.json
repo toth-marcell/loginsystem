@@ -1,6 +1,12 @@
 {
-	"dependencies": {
-		"@awmottaz/prettier-plugin-void-html": "^1.9.0",
-		"prettier": "^3.6.2"
-	}
+  "type": "module",
+  "devDependencies": {
+    "@awmottaz/prettier-plugin-void-html": "^1.9.0",
+    "prettier": "^3.6.2"
+  },
+  "dependencies": {
+    "express": "^5.1.0",
+    "sequelize": "^6.37.7",
+    "sqlite3": "^5.1.7"
+  }
 }

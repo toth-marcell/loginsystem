@@ -38,3 +38,12 @@ input {
     background: #222;
   }
 }
+#msg {
+  padding: 5px;
+}
+.msg-fail {
+  border: 2px solid red;
+}
+.msg-success {
+  border: 2px solid green;
+}

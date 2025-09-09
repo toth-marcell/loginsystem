@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="hu">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bejelentkezés</title>
+  <meta name="color-scheme" content="dark light">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
+</head>
+
+<body>
+  <form id="loginForm" onsubmit="login()" method="dialog">
+    <p id="msg"></p>
+    <h2>Bejelentkezés</h2>
+    <label>
+      Felhasználónév
+      <input type="text" name="name">
+    </label>
+    <label>
+      Jelszó
+      <input type="password" name="password">
+    </label>
+    <button type="submit">Bejelentkezés</button>
+  </form>
+</body>
+
+</html>
