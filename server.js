@@ -1,10 +1,6 @@
 import express from "express";
 import { User } from "./models.js";
 
-if ((await User.findAll()).length == 0) {
-  User.create({ name: "testuser", password: "password" });
-}
-
 const app = express();
 app.use(express.static("public"));
 app.use(express.json());
@@ -21,6 +17,18 @@ app.post("/api/login", async (req, res) => {
   } else {
     res.status(400).json({ msg: "Nincs ilyen felhasználó!" });
   }
+});
+
+app.post("/api/register", async (req, res) => {
+  const { name, password } = req.body;
+  if (!name || !password) {
+    return res.status(400).json({ msg: "Nem lehet üres név vagy jelszó!" });
+  }
+  const existingUser = await User.findOne({ where: { name } });
+  if (existingUser) {
+    return res.status(400).json({ msg: "Ez a név már használatban van!" });
+  }
+  res.json({ msg: "Siker!", user: await User.create({ name, password }) });
 });
 
 const port = 3000;

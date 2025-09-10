@@ -11,9 +11,9 @@
 </head>
 
 <body>
-  <form id="loginForm" onsubmit="login()" method="dialog">
+  <form id="loginForm">
     <p id="msg"></p>
-    <h2>Bejelentkezés</h2>
+    <h2>Bejelentkezés vagy Regisztráció</h2>
     <label>
       Felhasználónév
       <input type="text" name="name">
@@ -22,7 +22,8 @@
       Jelszó
       <input type="password" name="password">
     </label>
-    <button type="submit">Bejelentkezés</button>
+    <button type="button" onclick="login()">Bejelentkezés</button>
+    <button type="button" onclick="register()">Regisztráció</button>
   </form>
 </body>
 
