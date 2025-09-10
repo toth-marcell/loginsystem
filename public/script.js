@@ -23,3 +23,12 @@ async function submitAuthForm(action) {
   }
   msg.innerText = (await result.json()).msg;
 }
+
+async function getSecret() {
+  const result = await fetch("/api/getSecret", {
+    headers: {
+      authorization: "titok",
+    },
+  });
+  console.log(await result.json());
+}

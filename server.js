@@ -31,5 +31,12 @@ app.post("/api/register", async (req, res) => {
   res.json({ msg: "Siker!", user: await User.create({ name, password }) });
 });
 
+app.get("/api/getSecret", (req, res) => {
+  if (req.headers.authorization == "titok") {
+    return res.json({ secret: "Szia!" });
+  }
+  return res.status(400).json({ msg: "Nincs erre jogod!" });
+});
+
 const port = 3000;
 app.listen(port, () => console.log(`Listening on :${port}`));

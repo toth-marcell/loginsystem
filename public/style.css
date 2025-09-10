@@ -6,7 +6,7 @@ body {
 }
 form {
   width: max-content;
-  margin: 25vh auto;
+  margin: 50px auto;
   border: var(--accent-color) 2px solid;
 }
 form > * {
@@ -20,6 +20,7 @@ button {
   border: none;
   padding: 10px;
   margin: 20px auto;
+  display: block;
 }
 button:hover {
   opacity: 80%;
