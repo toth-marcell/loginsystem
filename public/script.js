@@ -21,14 +21,16 @@ async function submitAuthForm(action) {
   } else {
     msg.className = "msg-fail";
   }
-  msg.innerText = (await result.json()).msg;
+  const data = await result.json();
+  sessionStorage.setItem("token", data.token);
+  msg.innerText = data.msg;
 }
 
-async function getSecret() {
-  const result = await fetch("/api/getSecret", {
+async function getSecret(name) {
+  const result = await fetch(`/api/${name}`, {
     headers: {
-      authorization: "titok",
+      authorization: sessionStorage.getItem("token"),
     },
   });
-  console.log(await result.json());
+  document.getElementById("secretMsg").innerText = (await result.json()).msg;
 }
