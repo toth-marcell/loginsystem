@@ -34,6 +34,7 @@ app.post("/api/register", async (req, res) => {
   if (existingUser) {
     return res.status(400).json({ msg: "Ez a név már használatban van!" });
   }
+  await User.create({ name, password });
   res.json({
     msg: "Siker!",
     token: JWT.sign({ name }, secret, { expiresIn: "1h" }),
