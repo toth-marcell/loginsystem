@@ -7,7 +7,6 @@
   <title>Bejelentkezés</title>
   <meta name="color-scheme" content="dark light">
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
 </head>
 
 <body>
@@ -26,9 +25,29 @@
     <button type="button" onclick="register()">Regisztráció</button>
   </form>
 
-  <button onclick="getSecret('getSecret')">Titok</button>
-  <button onclick="getSecret('moreSecrets')">Másik titok</button>
+  <div class="loggedInOnly">
+    <button onclick="getSecret('getSecret')">Titok</button>
+    <button onclick="getSecret('moreSecrets')">Másik titok</button>
+  </div>
+
+  <div class="loggedInOnly">
+    <button onclick="getUsers()">felhasználók lista lekérése</button>
+    <ul id="usersList"></ul>
+  </div>
+
+  <div class="loggedInOnly">
+    <h2>Tantárgyak</h2>
+    <form method="dialog" onsubmit="createSubject()">
+      <label>
+        Név
+        <input type="text" id="newSubjectName">
+      </label>
+      <button type="submit">Létrehozás</button>
+    </form>
+    <ul id="subjectList"></ul>
+  </div>
   <p id="secretMsg"></p>
+  <script src="script.js"></script>
 </body>
 
 </html>

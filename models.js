@@ -28,13 +28,15 @@ export const Grade = sequelize.define("Grade", {
   },
 });
 
+export const UserSubject = sequelize.define("UserSubject");
+
 Grade.belongsTo(Subject);
 Subject.hasMany(Grade);
 
 Grade.belongsTo(User);
 User.hasMany(Grade);
 
-User.belongsToMany(Subject, { through: "UserSubjects" });
-Subject.belongsToMany(User, { through: "UserSubjects" });
+User.belongsToMany(Subject, { through: "UserSubject" });
+Subject.belongsToMany(User, { through: "UserSubject" });
 
 await sequelize.sync();

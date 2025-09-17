@@ -1,6 +1,6 @@
 import express from "express";
 import JWT from "jsonwebtoken";
-import { Grade, Subject, User } from "./models.js";
+import { Grade, Subject, User, UserSubject } from "./models.js";
 
 const app = express();
 export default app;
@@ -60,13 +60,13 @@ app.get("/moreSecrets", auth, (req, res) => {
   return res.json({ msg: "Hello, world!" });
 });
 
-app.post("/subject", async (req, res) => {
+app.post("/subject", auth, async (req, res) => {
   const { name } = req.body;
   if (!name) return res.status(400).json({ msg: "Kötelező nevet megadni!" });
   res.json(await Subject.create({ name }));
 });
 
-app.post("/grade", async (req, res) => {
+app.post("/grade", auth, async (req, res) => {
   const { number, SubjectId, UserId } = req.body;
   if (!number)
     return res.status(400).json({ msg: "Kötelező értéket megadni!" });
@@ -83,4 +83,49 @@ app.get("/subject", async (req, res) => {
 
 app.get("/grade", async (req, res) => {
   res.json(await Grade.findAll({ include: [User, Subject] }));
+});
+
+app.get("/users", async (req, res) => {
+  res.json(
+    await User.findAll({
+      attributes: ["id", "name", "createdAt", "updatedAt"],
+    }),
+  );
+});
+
+app.delete("/users/:id", auth, async (req, res) => {
+  const id = req.params.id;
+  const user = await User.findByPk(id);
+  if (!user) return res.status(400).json({ msg: "Nincs ilyen felhasználó!" });
+  await user.destroy();
+  res.json({ msg: "Siker!" });
+});
+
+app.delete("/subject/:id", auth, async (req, res) => {
+  const id = req.params.id;
+  const subject = await Subject.findByPk(id);
+  if (!subject) return res.status(400).json({ msg: "Nincs ilyen tantárgy!" });
+  await subject.destroy();
+  res.json({ msg: "Siker!" });
+});
+
+app.delete("/grade/:id", auth, async (req, res) => {
+  const id = req.params.id;
+  const grade = await Grade.findByPk(id);
+  if (!grade) return res.status(400).json({ msg: "Nincs ilyen jegy!" });
+  await grade.destroy();
+  res.json({ msg: "Siker!" });
+});
+
+app.delete("/usersubject", auth, async (req, res) => {
+  const { UserId, SubjectId } = req.query;
+  const usersubject = await UserSubject.findOne({
+    where: { UserId, SubjectId },
+  });
+  if (!usersubject)
+    return res
+      .status(400)
+      .json({ msg: "Nincs ilyen felhasználó-tantárgy kapcsolat!" });
+  await usersubject.destroy();
+  res.json({ msg: "Siker!" });
 });
