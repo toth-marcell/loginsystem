@@ -60,10 +60,10 @@ app.get("/moreSecrets", auth, (req, res) => {
   return res.json({ msg: "Hello, world!" });
 });
 
-app.post("/subject", auth, async (req, res) => {
+app.post("/subject", async (req, res) => {
   const { name } = req.body;
   if (!name) return res.status(400).json({ msg: "Kötelező nevet megadni!" });
-  res.json(await Subject.create({ name }));
+  res.json({ msg: "Siker!", newSubject: await Subject.create({ name }) });
 });
 
 app.post("/grade", auth, async (req, res) => {
@@ -101,7 +101,7 @@ app.delete("/users/:id", auth, async (req, res) => {
   res.json({ msg: "Siker!" });
 });
 
-app.delete("/subject/:id", auth, async (req, res) => {
+app.delete("/subject/:id", async (req, res) => {
   const id = req.params.id;
   const subject = await Subject.findByPk(id);
   if (!subject) return res.status(400).json({ msg: "Nincs ilyen tantárgy!" });
